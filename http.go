@@ -12,7 +12,7 @@ const ssl_key = "../server.key"
 func main() {
 	http.Handle("/", http.FileServer(http.Dir("./")))
 
-	config := &tls.Config{MinVersion: tls.VersionTLS10}
+	config := &tls.Config{MaxVersion: tls.VersionTLS10}
 	server := &http.Server{Addr: ":443", Handler: nil, TLSConfig: config}
 	log.Fatal(server.ListenAndServeTLS(ssl_crt, ssl_key))
 
